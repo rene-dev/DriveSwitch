@@ -1,0 +1,288 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A75AB09B134A19ED005401E9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A75AB09A134A19ED005401E9 /* Cocoa.framework */; };
+		A75AB0A5134A19ED005401E9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A75AB0A3134A19ED005401E9 /* InfoPlist.strings */; };
+		A75AB0A8134A19ED005401E9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A75AB0A7134A19ED005401E9 /* main.m */; };
+		A75AB0AB134A19ED005401E9 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A75AB0A9134A19ED005401E9 /* Credits.rtf */; };
+		A75AB0AE134A19ED005401E9 /* DriveSwitchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A75AB0AD134A19ED005401E9 /* DriveSwitchAppDelegate.m */; };
+		A75AB0B1134A19EE005401E9 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A75AB0AF134A19EE005401E9 /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A75AB096134A19ED005401E9 /* DriveSwitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DriveSwitch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A75AB09A134A19ED005401E9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		A75AB09D134A19ED005401E9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		A75AB09E134A19ED005401E9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A75AB09F134A19ED005401E9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A75AB0A2134A19ED005401E9 /* DriveSwitch-Info.plist */ = {isa = PBXFileReference; path = "DriveSwitch-Info.plist"; sourceTree = "<group>"; };
+		A75AB0A4134A19ED005401E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A75AB0A6134A19ED005401E9 /* DriveSwitch-Prefix.pch */ = {isa = PBXFileReference; path = "DriveSwitch-Prefix.pch"; sourceTree = "<group>"; };
+		A75AB0A7134A19ED005401E9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A75AB0AA134A19ED005401E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		A75AB0AC134A19ED005401E9 /* DriveSwitchAppDelegate.h */ = {isa = PBXFileReference; path = DriveSwitchAppDelegate.h; sourceTree = "<group>"; };
+		A75AB0AD134A19ED005401E9 /* DriveSwitchAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriveSwitchAppDelegate.m; sourceTree = "<group>"; };
+		A75AB0B0134A19EE005401E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A75AB093134A19ED005401E9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A75AB09B134A19ED005401E9 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A75AB08B134A19ED005401E9 = {
+			isa = PBXGroup;
+			children = (
+				A75AB0A0134A19ED005401E9 /* DriveSwitch */,
+				A75AB099134A19ED005401E9 /* Frameworks */,
+				A75AB097134A19ED005401E9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A75AB097134A19ED005401E9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A75AB096134A19ED005401E9 /* DriveSwitch.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A75AB099134A19ED005401E9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A75AB09A134A19ED005401E9 /* Cocoa.framework */,
+				A75AB09C134A19ED005401E9 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A75AB09C134A19ED005401E9 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A75AB09D134A19ED005401E9 /* AppKit.framework */,
+				A75AB09E134A19ED005401E9 /* CoreData.framework */,
+				A75AB09F134A19ED005401E9 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		A75AB0A0134A19ED005401E9 /* DriveSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				A75AB0AC134A19ED005401E9 /* DriveSwitchAppDelegate.h */,
+				A75AB0AD134A19ED005401E9 /* DriveSwitchAppDelegate.m */,
+				A75AB0AF134A19EE005401E9 /* MainMenu.xib */,
+				A75AB0A1134A19ED005401E9 /* Supporting Files */,
+			);
+			path = DriveSwitch;
+			sourceTree = "<group>";
+		};
+		A75AB0A1134A19ED005401E9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A75AB0A2134A19ED005401E9 /* DriveSwitch-Info.plist */,
+				A75AB0A3134A19ED005401E9 /* InfoPlist.strings */,
+				A75AB0A6134A19ED005401E9 /* DriveSwitch-Prefix.pch */,
+				A75AB0A7134A19ED005401E9 /* main.m */,
+				A75AB0A9134A19ED005401E9 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A75AB095134A19ED005401E9 /* DriveSwitch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A75AB0B4134A19EE005401E9 /* Build configuration list for PBXNativeTarget "DriveSwitch" */;
+			buildPhases = (
+				A75AB092134A19ED005401E9 /* Sources */,
+				A75AB093134A19ED005401E9 /* Frameworks */,
+				A75AB094134A19ED005401E9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DriveSwitch;
+			productName = DriveSwitch;
+			productReference = A75AB096134A19ED005401E9 /* DriveSwitch.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A75AB08D134A19ED005401E9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = Reroo;
+			};
+			buildConfigurationList = A75AB090134A19ED005401E9 /* Build configuration list for PBXProject "DriveSwitch" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A75AB08B134A19ED005401E9;
+			productRefGroup = A75AB097134A19ED005401E9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A75AB095134A19ED005401E9 /* DriveSwitch */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A75AB094134A19ED005401E9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A75AB0A5134A19ED005401E9 /* InfoPlist.strings in Resources */,
+				A75AB0AB134A19ED005401E9 /* Credits.rtf in Resources */,
+				A75AB0B1134A19EE005401E9 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A75AB092134A19ED005401E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A75AB0A8134A19ED005401E9 /* main.m in Sources */,
+				A75AB0AE134A19ED005401E9 /* DriveSwitchAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A75AB0A3134A19ED005401E9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A75AB0A4134A19ED005401E9 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A75AB0A9134A19ED005401E9 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A75AB0AA134A19ED005401E9 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		A75AB0AF134A19EE005401E9 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A75AB0B0134A19EE005401E9 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A75AB0B2134A19EE005401E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		A75AB0B3134A19EE005401E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		A75AB0B5134A19EE005401E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DriveSwitch/DriveSwitch-Prefix.pch";
+				INFOPLIST_FILE = "DriveSwitch/DriveSwitch-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A75AB0B6134A19EE005401E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DriveSwitch/DriveSwitch-Prefix.pch";
+				INFOPLIST_FILE = "DriveSwitch/DriveSwitch-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A75AB090134A19ED005401E9 /* Build configuration list for PBXProject "DriveSwitch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A75AB0B2134A19EE005401E9 /* Debug */,
+				A75AB0B3134A19EE005401E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A75AB0B4134A19EE005401E9 /* Build configuration list for PBXNativeTarget "DriveSwitch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A75AB0B5134A19EE005401E9 /* Debug */,
+				A75AB0B6134A19EE005401E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A75AB08D134A19ED005401E9 /* Project object */;
+}

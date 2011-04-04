@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'DriveSwitch' target in the 'DriveSwitch' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
