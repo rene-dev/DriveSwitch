@@ -13,6 +13,7 @@
 		A75AB0AB134A19ED005401E9 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A75AB0A9134A19ED005401E9 /* Credits.rtf */; };
 		A75AB0AE134A19ED005401E9 /* DriveSwitchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A75AB0AD134A19ED005401E9 /* DriveSwitchAppDelegate.m */; };
 		A75AB0B1134A19EE005401E9 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A75AB0AF134A19EE005401E9 /* MainMenu.xib */; };
+		A75AB0C0134A1BE4005401E9 /* README in Resources */ = {isa = PBXBuildFile; fileRef = A75AB0BF134A1BE4005401E9 /* README */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,14 +22,15 @@
 		A75AB09D134A19ED005401E9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		A75AB09E134A19ED005401E9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A75AB09F134A19ED005401E9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		A75AB0A2134A19ED005401E9 /* DriveSwitch-Info.plist */ = {isa = PBXFileReference; path = "DriveSwitch-Info.plist"; sourceTree = "<group>"; };
+		A75AB0A2134A19ED005401E9 /* DriveSwitch-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DriveSwitch-Info.plist"; sourceTree = "<group>"; };
 		A75AB0A4134A19ED005401E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A75AB0A6134A19ED005401E9 /* DriveSwitch-Prefix.pch */ = {isa = PBXFileReference; path = "DriveSwitch-Prefix.pch"; sourceTree = "<group>"; };
+		A75AB0A6134A19ED005401E9 /* DriveSwitch-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DriveSwitch-Prefix.pch"; sourceTree = "<group>"; };
 		A75AB0A7134A19ED005401E9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A75AB0AA134A19ED005401E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		A75AB0AC134A19ED005401E9 /* DriveSwitchAppDelegate.h */ = {isa = PBXFileReference; path = DriveSwitchAppDelegate.h; sourceTree = "<group>"; };
+		A75AB0AC134A19ED005401E9 /* DriveSwitchAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriveSwitchAppDelegate.h; sourceTree = "<group>"; };
 		A75AB0AD134A19ED005401E9 /* DriveSwitchAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriveSwitchAppDelegate.m; sourceTree = "<group>"; };
 		A75AB0B0134A19EE005401E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		A75AB0BF134A1BE4005401E9 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +48,7 @@
 		A75AB08B134A19ED005401E9 = {
 			isa = PBXGroup;
 			children = (
+				A75AB0BF134A1BE4005401E9 /* README */,
 				A75AB0A0134A19ED005401E9 /* DriveSwitch */,
 				A75AB099134A19ED005401E9 /* Frameworks */,
 				A75AB097134A19ED005401E9 /* Products */,
@@ -155,6 +158,7 @@
 				A75AB0A5134A19ED005401E9 /* InfoPlist.strings in Resources */,
 				A75AB0AB134A19ED005401E9 /* Credits.rtf in Resources */,
 				A75AB0B1134A19EE005401E9 /* MainMenu.xib in Resources */,
+				A75AB0C0134A1BE4005401E9 /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +285,7 @@
 				A75AB0B6134A19EE005401E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
