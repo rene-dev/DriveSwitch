@@ -11,8 +11,17 @@
 @interface DriveSwitchAppDelegate : NSObject <NSApplicationDelegate> {
 @private
     NSWindow *window;
+    IBOutlet NSMenu *statusMenu;
+    NSStatusItem * statusItem;
+    NSImage *menuIcon;
+    NSImage *menuAlternateIcon;
 }
 
 @property (assign) IBOutlet NSWindow *window;
+
+-(IBAction)switchESD:(id)sender;
+
+void runSystemCommand(NSString *cmd);
+-(void)openWin:(id)sender;
 
 @end
