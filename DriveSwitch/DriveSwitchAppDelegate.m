@@ -14,7 +14,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Insert code here to initialize your application
+    running = NO;
 }
 
 -(void)awakeFromNib{
@@ -34,42 +34,47 @@
     
     //Tells the NSStatusItem what menu to load
     //[statusItem setMenu:statusMenu];
-    [statusItem setAction:@selector(openWin:)];
+    [statusItem setAction:@selector(clickIcon)];
     //Sets the tooptip for our item
-    [statusItem setToolTip:@"Hardwrk Switch"];
+    [statusItem setToolTip:@"Drive Switch"];
     //Enables highlighting
     [statusItem setHighlightMode:YES];
 }
 
--(void)openWin:(id)sender{
+-(void)clickIcon{
     NSEvent *event = [NSApp currentEvent];
     if([event modifierFlags] & NSAlternateKeyMask) {
         NSLog(@"control click");
+        //[settingsPanel setIsVisible:YES];
+        [statusItem popUpStatusItemMenu:statusMenu];
     } else {
-        [self switchESD:@""];
+        [self toggleDrive];
     }
 }
 
--(IBAction)switchESD:(id)sender{
+-(void)toggleDrive{
     
-    if ([[[statusMenu itemAtIndex:0] title ] isEqualToString:@"Stopped"]) {
-        
-        
+    if (!running) {
         runSystemCommand(@"diskutil mount /dev/disk1s2");
-        [[statusMenu itemAtIndex:0] setTitle:@"Running"];
+        running = 1;
         [statusItem setImage:menuAlternateIcon];
     } else {
         runSystemCommand(@"diskutil eject /dev/disk1s2");
-        [[statusMenu itemAtIndex:0] setTitle:@"Stopped"];
+        running = 0;
         [statusItem setImage:menuIcon];
     }
-    
+}
+
+- (IBAction)showSettings:(id)sender {
+    [[NSApplication sharedApplication] activateIgnoringOtherApps:TRUE];
+    [settingsPanel makeKeyAndOrderFront:self];
 }
 
 void runSystemCommand(NSString *cmd)
 {
-    [NSTask launchedTaskWithLaunchPath:@"/bin/sh"
-                             arguments:[NSArray arrayWithObjects:@"-c", cmd, nil]];
+    //[NSTask launchedTaskWithLaunchPath:@"/bin/sh"
+      //                       arguments:[NSArray arrayWithObjects:@"-c", cmd, nil]];
+    NSLog(@"%@",cmd);
 }
 
 @end

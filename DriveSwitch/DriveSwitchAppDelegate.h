@@ -12,16 +12,19 @@
 @private
     NSWindow *window;
     IBOutlet NSMenu *statusMenu;
+    IBOutlet NSPanel *settingsPanel;
+    IBOutlet NSTextField *disk;
     NSStatusItem * statusItem;
     NSImage *menuIcon;
     NSImage *menuAlternateIcon;
+    bool running;
 }
 
 @property (assign) IBOutlet NSWindow *window;
 
--(IBAction)switchESD:(id)sender;
-
-void runSystemCommand(NSString *cmd);
--(void)openWin:(id)sender;
+- (void) toggleDrive;
+- (IBAction) showSettings:(id)sender;
+- (void) runSystemCommand(NSString *cmd);
+- (void) clickIcon;
 
 @end
