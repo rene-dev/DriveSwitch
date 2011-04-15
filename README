@@ -1,1 +1,4 @@
-test
+DriveSwitch is a simple status bar icon for Mac OS X to spindown or mount a harddisk.
+I made this for the second harddrive in my MacvBook Pro.
+
+alt click on the icon, and click settings to change the disk. Usually this is disk1s2, but may be different in your setup.
