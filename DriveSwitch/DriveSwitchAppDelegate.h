@@ -8,15 +8,16 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface DriveSwitchAppDelegate : NSObject <NSApplicationDelegate> {
+@interface DriveSwitchAppDelegate : NSObject <NSApplicationDelegate,NSWindowDelegate> {
 @private
     NSWindow *window;
     IBOutlet NSMenu *statusMenu;
     IBOutlet NSPanel *settingsPanel;
     IBOutlet NSTextField *disk;
     NSStatusItem * statusItem;
-    NSImage *menuIcon;
-    NSImage *menuAlternateIcon;
+    NSImage *iconOff;
+    NSImage *iconOn;
+    NSUserDefaults* defaults;
     bool running;
 }
 
@@ -24,7 +25,7 @@
 
 - (void) toggleDrive;
 - (IBAction) showSettings:(id)sender;
-- (void) runSystemCommand(NSString *cmd);
+- (void) runSystemCommand:(NSString *)cmd;
 - (void) clickIcon;
 
 @end

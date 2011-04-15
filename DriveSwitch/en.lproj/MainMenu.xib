@@ -1387,7 +1387,7 @@
 										<bytes key="NSWhite">MQA</bytes>
 									</object>
 								</object>
-								<object class="NSColor" key="NSTextColor" id="350499827">
+								<object class="NSColor" key="NSTextColor" id="797117864">
 									<int key="NSColorSpace">6</int>
 									<string key="NSCatalogName">System</string>
 									<string key="NSColorName">textColor</string>
@@ -1422,7 +1422,7 @@
 										<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 									</object>
 								</object>
-								<reference key="NSTextColor" ref="350499827"/>
+								<reference key="NSTextColor" ref="797117864"/>
 							</object>
 						</object>
 					</object>
@@ -2149,6 +2149,14 @@
 						<reference key="destination" ref="905720746"/>
 					</object>
 					<int key="connectionID">583</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="433127963"/>
+						<reference key="destination" ref="976324537"/>
+					</object>
+					<int key="connectionID">590</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3206,6 +3214,7 @@
 							<reference ref="786868423"/>
 						</object>
 						<reference key="parent" ref="0"/>
+						<string key="objectName">Panel - Settings</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">576</int>
@@ -3786,7 +3795,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">583</int>
+			<int key="maxID">590</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

@@ -15,10 +15,11 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     running = NO;
+    defaults = [NSUserDefaults standardUserDefaults];
+    disk.stringValue = [defaults objectForKey:@"disk"];
 }
 
 -(void)awakeFromNib{
-    
     //Create the NSStatusBar and set its length
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength] retain];
     
@@ -26,11 +27,11 @@
     NSBundle *bundle = [NSBundle mainBundle];
     
     //Allocates and loads the images into the application which will be used for our NSStatusItem
-    menuIcon = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"icon-off" ofType:@"png"]];
-    menuAlternateIcon = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"icon-on" ofType:@"png"]];
+    iconOff = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"icon-off" ofType:@"png"]];
+    iconOn  = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"icon-on" ofType:@"png"]];
     
     //Sets the images in our NSStatusItem
-    [statusItem setImage:menuIcon];
+    [statusItem setImage:iconOff];
     
     //Tells the NSStatusItem what menu to load
     //[statusItem setMenu:statusMenu];
@@ -44,8 +45,6 @@
 -(void)clickIcon{
     NSEvent *event = [NSApp currentEvent];
     if([event modifierFlags] & NSAlternateKeyMask) {
-        NSLog(@"control click");
-        //[settingsPanel setIsVisible:YES];
         [statusItem popUpStatusItemMenu:statusMenu];
     } else {
         [self toggleDrive];
@@ -53,15 +52,14 @@
 }
 
 -(void)toggleDrive{
-    
-    if (!running) {
-        runSystemCommand(@"diskutil mount /dev/disk1s2");
-        running = 1;
-        [statusItem setImage:menuAlternateIcon];
-    } else {
-        runSystemCommand(@"diskutil eject /dev/disk1s2");
+    if (running) {
+        [self runSystemCommand:[NSString stringWithFormat:@"diskutil eject /dev/%@",disk.stringValue]];
         running = 0;
-        [statusItem setImage:menuIcon];
+        [statusItem setImage:iconOff];
+    } else {
+        [self runSystemCommand:[NSString stringWithFormat:@"diskutil mount /dev/%@",disk.stringValue]];
+        running = 1;
+        [statusItem setImage:iconOn];
     }
 }
 
@@ -70,11 +68,13 @@
     [settingsPanel makeKeyAndOrderFront:self];
 }
 
-void runSystemCommand(NSString *cmd)
-{
-    //[NSTask launchedTaskWithLaunchPath:@"/bin/sh"
-      //                       arguments:[NSArray arrayWithObjects:@"-c", cmd, nil]];
-    NSLog(@"%@",cmd);
+- (void)windowWillClose:(NSNotification *)aNotification{
+    [defaults setObject:disk.stringValue forKey:@"disk"];
+    [defaults synchronize];
+}
+
+- (void) runSystemCommand:(NSString *)cmd{
+    [NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:[NSArray arrayWithObjects:@"-c", cmd, nil]];
 }
 
 @end
