@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1060</int>
-		<string key="IBDocument.SystemVersion">10J869</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1305</string>
-		<string key="IBDocument.AppKitVersion">1038.35</string>
+		<string key="IBDocument.SystemVersion">10K540</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1306</string>
+		<string key="IBDocument.AppKitVersion">1038.36</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">1305</string>
+			<string key="NS.object.0">1306</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1349,20 +1349,20 @@
 			<object class="NSWindowTemplate" id="433127963">
 				<int key="NSWindowStyleMask">19</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{1247, 981}, {176, 47}}</string>
+				<string key="NSWindowRect">{{1104, 729}, {176, 49}}</string>
 				<int key="NSWTFlags">-466616320</int>
 				<string key="NSWindowTitle">Settings</string>
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
 				<object class="NSView" key="NSWindowView" id="786868423">
 					<reference key="NSNextResponder"/>
-					<int key="NSvFlags">256</int>
+					<int key="NSvFlags">265</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSTextField" id="275818979">
 							<reference key="NSNextResponder" ref="786868423"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{60, 15}, {96, 22}}</string>
+							<string key="NSFrame">{{60, 17}, {96, 22}}</string>
 							<reference key="NSSuperview" ref="786868423"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView"/>
@@ -1401,7 +1401,7 @@
 						<object class="NSTextField" id="523753963">
 							<reference key="NSNextResponder" ref="786868423"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{17, 18}, {38, 17}}</string>
+							<string key="NSFrame">{{17, 20}, {38, 17}}</string>
 							<reference key="NSSuperview" ref="786868423"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="275818979"/>
@@ -1426,12 +1426,12 @@
 							</object>
 						</object>
 					</object>
-					<string key="NSFrame">{{7, 11}, {176, 47}}</string>
+					<string key="NSFrame">{{7, 11}, {176, 49}}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="523753963"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1280, 778}}</string>
 				<string key="NSMaxSize">{1e+13, 1e+13}</string>
 			</object>
 		</object>
@@ -3795,7 +3795,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">590</int>
+			<int key="maxID">597</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
