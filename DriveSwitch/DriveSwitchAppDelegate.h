@@ -7,6 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <IOKit/pwr_mgt/IOPMLib.h>
+#import <IOKit/IOMessage.h>
+
+void initSleepNotifications (void);
+void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msgArgument);
 
 @interface DriveSwitchAppDelegate : NSObject <NSApplicationDelegate,NSWindowDelegate> {
 @private
@@ -27,5 +32,6 @@
 - (IBAction) showSettings:(id)sender;
 - (void) runSystemCommand:(NSString *)cmd;
 - (void) clickIcon;
+- (void) wakeUp;
 
 @end

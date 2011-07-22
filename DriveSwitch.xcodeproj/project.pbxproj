@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A71F2B0613D9B43F002A8767 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71F2B0513D9B43F002A8767 /* IOKit.framework */; };
 		A75AB09B134A19ED005401E9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A75AB09A134A19ED005401E9 /* Cocoa.framework */; };
 		A75AB0A5134A19ED005401E9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A75AB0A3134A19ED005401E9 /* InfoPlist.strings */; };
 		A75AB0A8134A19ED005401E9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A75AB0A7134A19ED005401E9 /* main.m */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A71F2B0513D9B43F002A8767 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		A75AB096134A19ED005401E9 /* DriveSwitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DriveSwitch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A75AB09A134A19ED005401E9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A75AB09D134A19ED005401E9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -42,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A71F2B0613D9B43F002A8767 /* IOKit.framework in Frameworks */,
 				A75AB09B134A19ED005401E9 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +74,7 @@
 		A75AB099134A19ED005401E9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A71F2B0513D9B43F002A8767 /* IOKit.framework */,
 				A75AB09A134A19ED005401E9 /* Cocoa.framework */,
 				A75AB09C134A19ED005401E9 /* Other Frameworks */,
 			);

@@ -8,12 +8,37 @@
 
 #import "DriveSwitchAppDelegate.h"
 
+id objcptr;
+
+void initSleepNotifications (void)
+{
+	static io_connect_t	rootPort;
+	
+	IONotificationPortRef	notificationPort;
+	io_object_t		notifier;
+    
+	rootPort = IORegisterForSystemPower(&rootPort, &notificationPort, sleepCallback, &notifier);
+	if (! rootPort) {
+		NSLog(@"IORegisterForSystemPower failed");
+	}
+	CFRunLoopAddSource (CFRunLoopGetCurrent(), IONotificationPortGetRunLoopSource(notificationPort), kCFRunLoopDefaultMode);
+}
+
+void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msgArgument)
+{
+    if (msgType == kIOMessageSystemHasPoweredOn) {
+        [objcptr wakeUp];
+    }
+}
+
 @implementation DriveSwitchAppDelegate
 
 @synthesize window;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    objcptr = self;
+    initSleepNotifications();
     running = NO;
     defaults = [NSUserDefaults standardUserDefaults];
     disk.stringValue = [defaults objectForKey:@"disk"];
@@ -75,6 +100,13 @@
 
 - (void) runSystemCommand:(NSString *)cmd{
     [NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:[NSArray arrayWithObjects:@"-c", cmd, nil]];
+}
+
+-(void)wakeUp{
+    NSLog(@"Received wake event");
+    [self runSystemCommand:[NSString stringWithFormat:@"diskutil eject /dev/%@",disk.stringValue]];
+    running = 0;
+    [statusItem setImage:iconOff];
 }
 
 @end
