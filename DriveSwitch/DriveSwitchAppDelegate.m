@@ -39,16 +39,13 @@ void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msg
 {
     objcptr = self;
     initSleepNotifications();
-    running = NO;
     defaults = [NSUserDefaults standardUserDefaults];
     disk.stringValue = [defaults objectForKey:@"disk"];
     mountPath = [[NSMutableString alloc] init];
     [self updateMounted];
     if (isMounted) {
-        running = 1;
         [statusItem setImage:iconOn];
     }else{
-        running = 0;
         [statusItem setImage:iconOff];
     }
     
@@ -121,10 +118,8 @@ void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msg
 - (IBAction)checkMounted:(id)sender {
     [self updateMounted];
     if (isMounted) {
-        running = 1;
         [statusItem setImage:iconOn];
     }else{
-        running = 0;
         [statusItem setImage:iconOff];
     }
 }
@@ -189,7 +184,7 @@ void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msg
 
 -(void)toggleDrive{
     [self debugLog:@"toggle"];
-    if (running) {
+    if (isMounted) {
         [self debugLog:@"unmounting...."];
         [self unmount];
         [self updateMounted];
@@ -198,7 +193,6 @@ void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msg
             [self lsof];
         }else{
             [self debugLog:@"unmounted"];
-            running = 0;
             [statusItem setImage:iconOff];
         }
 
@@ -206,7 +200,6 @@ void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msg
         [self debugLog:@"mounting...."];
         [self mount];
         [self updateMounted];
-        running = 1;
         [statusItem setImage:iconOn];
     }
 }
@@ -247,7 +240,6 @@ void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msg
 -(void)wakeUp{
     [self debugLog:@"Received wake event"];
     //[self runSystemCommand:[NSString stringWithFormat:@"diskutil eject /dev/%@",disk.stringValue]];
-    //running = 0;
     //[statusItem setImage:iconOff];
 }
 

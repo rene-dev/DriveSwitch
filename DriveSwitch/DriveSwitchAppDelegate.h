@@ -25,7 +25,6 @@ void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msg
     NSImage *iconOff;
     NSImage *iconOn;
     NSUserDefaults* defaults;
-    bool running;
     bool isMounted;
     NSMutableString *mountPath;
     IBOutlet NSTextView *outputText;
