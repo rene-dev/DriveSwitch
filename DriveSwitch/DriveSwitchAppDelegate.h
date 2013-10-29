@@ -27,6 +27,7 @@ void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msg
     NSUserDefaults* defaults;
     bool isMounted;
     NSMutableString *mountPath;
+    IBOutlet NSMenuItem *debugMenuItem;
     IBOutlet NSTextView *outputText;
 }
 

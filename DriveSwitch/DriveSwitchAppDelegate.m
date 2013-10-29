@@ -37,6 +37,9 @@ void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msg
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    #ifndef DEBUG
+    [debugMenuItem setHidden:YES];
+    #endif
     objcptr = self;
     initSleepNotifications();
     defaults = [NSUserDefaults standardUserDefaults];
@@ -166,10 +169,12 @@ void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msg
 }
 
 - (void)debugLog:(NSString *)string{
+    #ifdef DEBUG
     self.outputText.string = [self.outputText.string stringByAppendingString:[NSString stringWithFormat:@"\n%@", string]];
     NSRange range;
     range = NSMakeRange([self.outputText.string length], 0);
     [self.outputText scrollRangeToVisible:range];
+    #endif
 }
 
 -(void)toggleDrive{
