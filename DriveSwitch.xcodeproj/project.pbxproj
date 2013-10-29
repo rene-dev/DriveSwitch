@@ -20,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A711BBD3144F1B8700EC38D6 /* DriveSwitch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DriveSwitch.entitlements; sourceTree = "<group>"; };
 		A71F2B0513D9B43F002A8767 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		A75AB096134A19ED005401E9 /* DriveSwitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DriveSwitch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A75AB09A134A19ED005401E9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -94,6 +95,7 @@
 		A75AB0A0134A19ED005401E9 /* DriveSwitch */ = {
 			isa = PBXGroup;
 			children = (
+				A711BBD3144F1B8700EC38D6 /* DriveSwitch.entitlements */,
 				A75AB0AC134A19ED005401E9 /* DriveSwitchAppDelegate.h */,
 				A75AB0AD134A19ED005401E9 /* DriveSwitchAppDelegate.m */,
 				A75AB0AF134A19EE005401E9 /* MainMenu.xib */,
@@ -149,6 +151,7 @@
 		A75AB08D134A19ED005401E9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = Reroo;
 			};
 			buildConfigurationList = A75AB090134A19ED005401E9 /* Build configuration list for PBXProject "DriveSwitch" */;
@@ -260,6 +263,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -270,6 +274,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DriveSwitch/DriveSwitch-Prefix.pch";
 				INFOPLIST_FILE = "DriveSwitch/DriveSwitch-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -279,6 +284,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -289,6 +295,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DriveSwitch/DriveSwitch-Prefix.pch";
 				INFOPLIST_FILE = "DriveSwitch/DriveSwitch-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

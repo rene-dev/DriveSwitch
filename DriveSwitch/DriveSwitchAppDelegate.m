@@ -33,7 +33,7 @@ void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msg
 
 @implementation DriveSwitchAppDelegate
 
-@synthesize window;
+@synthesize window,outputText;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -42,6 +42,16 @@ void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msg
     running = NO;
     defaults = [NSUserDefaults standardUserDefaults];
     disk.stringValue = [defaults objectForKey:@"disk"];
+    mountPath = [[NSMutableString alloc] init];
+    [self updateMounted];
+    if (isMounted) {
+        running = 1;
+        [statusItem setImage:iconOn];
+    }else{
+        running = 0;
+        [statusItem setImage:iconOff];
+    }
+    
 }
 
 -(void)awakeFromNib{
@@ -65,6 +75,7 @@ void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msg
     [statusItem setToolTip:@"Drive Switch"];
     //Enables highlighting
     [statusItem setHighlightMode:YES];
+    filemanager = [NSFileManager defaultManager];
 }
 
 -(void)clickIcon{
@@ -76,13 +87,125 @@ void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msg
     }
 }
 
--(void)toggleDrive{
-    if (running) {
-        [self runSystemCommand:[NSString stringWithFormat:@"diskutil eject /dev/%@",disk.stringValue]];
+-(void)lsof{
+    NSTask *task = [[NSTask alloc] init];
+    NSPipe *outputPipe = [NSPipe pipe];
+    [task setLaunchPath:@"/usr/sbin/lsof"];
+    [task setArguments:@[@"-Fc",mountPath]];
+    [task setStandardOutput:outputPipe];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readCompleted:) name:NSFileHandleReadToEndOfFileCompletionNotification object:[outputPipe fileHandleForReading]];
+    [[outputPipe fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
+    [task launch];
+    [task release];
+}
+
+- (IBAction)list:(id)sender {
+    [self lsof];
+    /*
+    NSArray *keys = [NSArray arrayWithObjects:NSURLVolumeNameKey, NSURLVolumeIsEjectableKey, NSURLVolumeIsBrowsableKey, nil];
+    NSArray *disks = [filemanager mountedVolumeURLsIncludingResourceValuesForKeys:keys options:0];
+    for (NSURL *diskk in disks) {
+        //NSError *error;
+        //NSNumber *isRemovable;
+        //NSString *volumeName;
+        //[disk getResourceValue:&isRemovable forKey:NSURLVolumeIsRemovableKey error:&error];
+        //if ([isRemovable boolValue]) {
+        //    [url getResourceValue:&volumeName forKey:NSURLVolumeNameKey error:&error];
+        //    NSLog(@"%@", volumeName);
+        //}
+        NSLog(@"%@",[diskk absoluteString]);
+    }
+    */
+}
+
+- (IBAction)checkMounted:(id)sender {
+    [self updateMounted];
+    if (isMounted) {
+        running = 1;
+        [statusItem setImage:iconOn];
+    }else{
         running = 0;
         [statusItem setImage:iconOff];
+    }
+}
+
+- (void)updateMounted{
+    NSTask *task = [[NSTask alloc] init];
+    NSPipe *outputPipe = [NSPipe pipe];
+    [task setLaunchPath:@"/sbin/mount"];
+    [task setStandardOutput:outputPipe];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mountReadCompleted:) name:NSFileHandleReadToEndOfFileCompletionNotification object:[outputPipe fileHandleForReading]];
+    [[outputPipe fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
+    [task launch];
+    [task waitUntilExit];
+    [task release];
+}
+
+- (void)readCompleted:(NSNotification *)notification {
+    NSString *outStr = [[NSString alloc] initWithData:[[notification userInfo] objectForKey:NSFileHandleNotificationDataItem] encoding:NSUTF8StringEncoding];
+    //self.outputText.string = [self.outputText.string stringByAppendingString:[NSString stringWithFormat:@"\n%@", outStr]];
+    
+    for (NSString *line in [outStr componentsSeparatedByString:@"\n"]){
+        if ([line length] > 1 && [[line substringToIndex:1] isEqual: @"c"]) {
+            //NSLog(@"%@",[line substringFromIndex:1]);
+            [self debugLog:[line substringFromIndex:1]];
+        }
+    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleReadToEndOfFileCompletionNotification object:[notification object]];
+    [outStr release];
+    //NSLog(@"%@",outStr);
+}
+
+- (void)mountReadCompleted:(NSNotification *)notification {
+    NSString *outStr = [[NSString alloc] initWithData:[[notification userInfo] objectForKey:NSFileHandleNotificationDataItem] encoding:NSUTF8StringEncoding];
+    //self.outputText.string = [self.outputText.string stringByAppendingString:[NSString stringWithFormat:@"\n%@", outStr]];
+    isMounted = NO;
+    for (NSString *line in [outStr componentsSeparatedByString:@"\n"]){
+        if ([line length] > 1) {
+            NSArray *words = [line componentsSeparatedByString:@" "];
+            if([[NSString stringWithFormat:@"/dev/%@",disk.stringValue] isEqual:words[0]]){
+                [mountPath setString:words[2]];
+                isMounted = YES;
+            }
+            
+        }
+    }
+    if (isMounted) {
+        [self debugLog:[NSString stringWithFormat:@"is mounted at %@",mountPath]];
+    }else{
+        [self debugLog:@"not found"];
+    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleReadToEndOfFileCompletionNotification object:[notification object]];
+    [outStr release];
+    //NSLog(@"%@",outStr);
+}
+
+- (void)debugLog:(NSString *)string{
+    self.outputText.string = [self.outputText.string stringByAppendingString:[NSString stringWithFormat:@"\n%@", string]];
+    NSRange range;
+    range = NSMakeRange([self.outputText.string length], 0);
+    [self.outputText scrollRangeToVisible:range];
+}
+
+-(void)toggleDrive{
+    [self debugLog:@"toggle"];
+    if (running) {
+        [self debugLog:@"unmounting...."];
+        [self unmount];
+        [self updateMounted];
+        if (isMounted) {
+            [self debugLog:@"blocked by:"];
+            [self lsof];
+        }else{
+            [self debugLog:@"unmounted"];
+            running = 0;
+            [statusItem setImage:iconOff];
+        }
+
     } else {
-        [self runSystemCommand:[NSString stringWithFormat:@"diskutil mount /dev/%@",disk.stringValue]];
+        [self debugLog:@"mounting...."];
+        [self mount];
+        [self updateMounted];
         running = 1;
         [statusItem setImage:iconOn];
     }
@@ -93,20 +216,39 @@ void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msg
     [settingsPanel makeKeyAndOrderFront:self];
 }
 
+- (IBAction)showDebug:(id)sender {
+    [[NSApplication sharedApplication] activateIgnoringOtherApps:TRUE];
+    [debugPanel makeKeyAndOrderFront:self];
+}
+
 - (void)windowWillClose:(NSNotification *)aNotification{
     [defaults setObject:disk.stringValue forKey:@"disk"];
     [defaults synchronize];
 }
 
-- (void) runSystemCommand:(NSString *)cmd{
-    [NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:[NSArray arrayWithObjects:@"-c", cmd, nil]];
+- (void) mount{
+    NSTask *task = [[NSTask alloc] init];
+    [task setLaunchPath:@"/usr/sbin/diskutil"];
+    [task setArguments:@[@"mount",[NSString stringWithFormat:@"/dev/%@",disk.stringValue]]];
+    [task launch];
+    [task waitUntilExit];
+    [task release];
+}
+
+- (void) unmount{
+    NSTask *task = [[NSTask alloc] init];
+    [task setLaunchPath:@"/usr/sbin/diskutil"];
+    [task setArguments:@[@"eject",[NSString stringWithFormat:@"/dev/%@",disk.stringValue]]];
+    [task launch];
+    [task waitUntilExit];
+    [task release];
 }
 
 -(void)wakeUp{
-    NSLog(@"Received wake event");
-    [self runSystemCommand:[NSString stringWithFormat:@"diskutil eject /dev/%@",disk.stringValue]];
-    running = 0;
-    [statusItem setImage:iconOff];
+    [self debugLog:@"Received wake event"];
+    //[self runSystemCommand:[NSString stringWithFormat:@"diskutil eject /dev/%@",disk.stringValue]];
+    //running = 0;
+    //[statusItem setImage:iconOff];
 }
 
 @end
