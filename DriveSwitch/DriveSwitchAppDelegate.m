@@ -77,14 +77,14 @@ void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msg
 
 -(void)clickIcon{
     NSEvent *event = [NSApp currentEvent];
-    if([event modifierFlags] & NSAlternateKeyMask) {
+    if([event modifierFlags] & NSAlternateKeyMask) {//alt click
         [statusItem popUpStatusItemMenu:statusMenu];
     } else {
         [self toggleDrive];
     }
 }
 
--(void)lsof{
+-(void)lsof{//list open files
     NSTask *task = [[NSTask alloc] init];
     NSPipe *outputPipe = [NSPipe pipe];
     [task setLaunchPath:@"/usr/sbin/lsof"];
@@ -98,21 +98,6 @@ void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msg
 
 - (IBAction)list:(id)sender {
     [self lsof];
-    /*
-    NSArray *keys = [NSArray arrayWithObjects:NSURLVolumeNameKey, NSURLVolumeIsEjectableKey, NSURLVolumeIsBrowsableKey, nil];
-    NSArray *disks = [filemanager mountedVolumeURLsIncludingResourceValuesForKeys:keys options:0];
-    for (NSURL *diskk in disks) {
-        //NSError *error;
-        //NSNumber *isRemovable;
-        //NSString *volumeName;
-        //[disk getResourceValue:&isRemovable forKey:NSURLVolumeIsRemovableKey error:&error];
-        //if ([isRemovable boolValue]) {
-        //    [url getResourceValue:&volumeName forKey:NSURLVolumeNameKey error:&error];
-        //    NSLog(@"%@", volumeName);
-        //}
-        NSLog(@"%@",[diskk absoluteString]);
-    }
-    */
 }
 
 - (IBAction)checkMounted:(id)sender {
@@ -136,24 +121,30 @@ void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msg
     [task release];
 }
 
-- (void)readCompleted:(NSNotification *)notification {
+- (void)readCompleted:(NSNotification *)notification {//parse lsof output
     NSString *outStr = [[NSString alloc] initWithData:[[notification userInfo] objectForKey:NSFileHandleNotificationDataItem] encoding:NSUTF8StringEncoding];
-    //self.outputText.string = [self.outputText.string stringByAppendingString:[NSString stringWithFormat:@"\n%@", outStr]];
+    NSMutableString *apps = [[NSMutableString alloc]initWithString:@"The disk couldn't be unmounted\n because it is in use by\n"];
     
     for (NSString *line in [outStr componentsSeparatedByString:@"\n"]){
         if ([line length] > 1 && [[line substringToIndex:1] isEqual: @"c"]) {
-            //NSLog(@"%@",[line substringFromIndex:1]);
+            [apps appendFormat:@"%@ ",[line substringFromIndex:1]];
             [self debugLog:[line substringFromIndex:1]];
         }
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleReadToEndOfFileCompletionNotification object:[notification object]];
     [outStr release];
-    //NSLog(@"%@",outStr);
+    
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:apps];
+    [alert setInformativeText:@"Quit that application and try to unmount the disk again."];
+    [alert addButtonWithTitle:@"Ok"];
+    [alert runModal];
+    [apps release];
+    [alert release];
 }
 
-- (void)mountReadCompleted:(NSNotification *)notification {
+- (void)mountReadCompleted:(NSNotification *)notification {//parse mount output
     NSString *outStr = [[NSString alloc] initWithData:[[notification userInfo] objectForKey:NSFileHandleNotificationDataItem] encoding:NSUTF8StringEncoding];
-    //self.outputText.string = [self.outputText.string stringByAppendingString:[NSString stringWithFormat:@"\n%@", outStr]];
     isMounted = NO;
     for (NSString *line in [outStr componentsSeparatedByString:@"\n"]){
         if ([line length] > 1) {
@@ -172,7 +163,6 @@ void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msg
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleReadToEndOfFileCompletionNotification object:[notification object]];
     [outStr release];
-    //NSLog(@"%@",outStr);
 }
 
 - (void)debugLog:(NSString *)string{
@@ -188,7 +178,7 @@ void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msg
         [self debugLog:@"unmounting...."];
         [self unmount];
         [self updateMounted];
-        if (isMounted) {
+        if (isMounted) {//if unmount failed
             [self debugLog:@"blocked by:"];
             [self lsof];
         }else{
@@ -239,8 +229,10 @@ void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msg
 
 -(void)wakeUp{
     [self debugLog:@"Received wake event"];
-    //[self runSystemCommand:[NSString stringWithFormat:@"diskutil eject /dev/%@",disk.stringValue]];
-    //[statusItem setImage:iconOff];
+    if(isMounted == NO){
+        [self unmount];
+        [statusItem setImage:iconOff];
+    }
 }
 
 @end
