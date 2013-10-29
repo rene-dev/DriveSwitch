@@ -149,8 +149,8 @@ void sleepCallback (void *rootPort, io_service_t y, natural_t msgType, void *msg
     for (NSString *line in [outStr componentsSeparatedByString:@"\n"]){
         if ([line length] > 1) {
             NSArray *words = [line componentsSeparatedByString:@" "];
-            if([[NSString stringWithFormat:@"/dev/%@",disk.stringValue] isEqual:words[0]]){
-                [mountPath setString:words[2]];
+            if([[NSString stringWithFormat:@"/dev/%@",disk.stringValue] isEqual:[words objectAtIndex:0]]){
+                [mountPath setString:[words objectAtIndex:2]];
                 isMounted = YES;
             }
             
